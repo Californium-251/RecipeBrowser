@@ -288,22 +288,22 @@ namespace RecipeBrowser.UIElements
 				item.SetDefaults(type, false);
 
 				
-				if (item.type == ItemID.None)       // Case where we get a gap in item id's?
+				if (item.type == ItemID.None)      
                     continue;
 
-				if (item.headSlot != -1)			// if item is a helmet
+				if (item.headSlot != -1)			
 					Heads.Add(item);
-				if (item.bodySlot != -1)			// if item is a chestplate
+				if (item.bodySlot != -1)			
 					Bodys.Add(item);
-				if (item.legSlot != -1)				// if item is leggings
+				if (item.legSlot != -1)				
 					Legs.Add(item);
 			}
 
-			sets = new List<Tuple<Item, Item, Item, string, int>>();	// tuple is (helmet, chestplate, leggings, set Bonus, total defense [incl any from set bonus])
+			sets = new List<Tuple<Item, Item, Item, string, int>>();	
 			foreach (var head in Heads) {
 				foreach (var body in Bodys) {
 					foreach (var leg in Legs) {
-						// TODO: thread this shit to hell and back to speed up efficiency.
+						
 						testPlayer.statDefense = Player.DefenseStat.Default;
 						testPlayer.head = head.headSlot;
 						testPlayer.body = body.bodySlot;
@@ -382,7 +382,7 @@ namespace RecipeBrowser.UIElements
 					armorSetSlots.Add(slot);
 				}
 			}
-			armorSetSlotsMutex.ReleaseMutex();			//release mutex
+			armorSetSlotsMutex.ReleaseMutex();			     //release mutex
 			hasCalculated = true;
 			
 		}

@@ -298,7 +298,7 @@ namespace RecipeBrowser
 
 			if (SharedUI.instance.SelectedCategory.name == ArmorSetFeatureHelper.ArmorSetsHoverTest) {
 				if (ArmorSetFeatureHelper.hasCalculated == false && ArmorSetFeatureHelper.hasStarted != true)
-					await Task.Run(() => ArmorSetFeatureHelper.CalculateArmorSets());           //TODO: make this run on a separate thread
+					await Task.Run(() => ArmorSetFeatureHelper.CalculateArmorSets());           
 				if (ArmorSetFeatureHelper.hasCalculated && ArmorSetFeatureHelper.armorSetSlotsMutex.WaitOne(10))
 				{
 					slotsToUse = ArmorSetFeatureHelper.armorSetSlots.Cast<UIItemCatalogueItemSlot>().ToList();
