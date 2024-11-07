@@ -297,16 +297,18 @@ namespace RecipeBrowser
 			List<UIItemCatalogueItemSlot> slotsToUse = itemSlots;
 
 			if (SharedUI.instance.SelectedCategory.name == ArmorSetFeatureHelper.ArmorSetsHoverTest) {
-				if (ArmorSetFeatureHelper.hasCalculated == false && ArmorSetFeatureHelper.hasStarted != true)
+				if (!(ArmorSetFeatureHelper.hasCalculated) && !(ArmorSetFeatureHelper.hasStarted))
 					await Task.Run(() => ArmorSetFeatureHelper.CalculateArmorSets());           
 				if (ArmorSetFeatureHelper.hasCalculated && ArmorSetFeatureHelper.armorSetSlotsMutex.WaitOne(10))
 				{
 					slotsToUse = ArmorSetFeatureHelper.armorSetSlots.Cast<UIItemCatalogueItemSlot>().ToList();
 					ArmorSetFeatureHelper.armorSetSlotsMutex.ReleaseMutex();
-				}
+
+                    ArmorSetFeatureHelper.AppendSpecialUI(itemGrid);
+                }
 				else
 					slotsToUse = new List<UIItemCatalogueItemSlot>(); //empty
-				ArmorSetFeatureHelper.AppendSpecialUI(itemGrid);
+				
 			}
 
 			foreach (var slot in slotsToUse)
